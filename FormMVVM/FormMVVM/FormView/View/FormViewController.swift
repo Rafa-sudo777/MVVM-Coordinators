@@ -8,11 +8,20 @@
 import UIKit
 
 final class FormViewController: UIViewController {
+  
   @IBOutlet private weak var usertTxt: UITextField!
-  private let viewModel = FormViewModel()
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  var viewModel = FormViewModel()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setUpView()
+  }
+  private func setUpView() {
+    viewModel.user.bind { [weak self] userName in
+      self?.usertTxt.placeholder = userName
     }
+  }
+  
   @IBAction func doneButton(_ sender: Any) {
     if let name = usertTxt.text {
       let newUser = User(name: name)

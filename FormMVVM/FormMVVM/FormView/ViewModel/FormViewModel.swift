@@ -8,8 +8,7 @@
 final class FormViewModel {
   var user = Box("")
   func register(user: User) {
-    self.user.value = user.name
-    let mainViewModel = MainScreenViewModel()
-    mainViewModel.user = self.user
+    let mainView = MainViewController()
+    mainView.viewModel.user.value = user.name
   }
 }
